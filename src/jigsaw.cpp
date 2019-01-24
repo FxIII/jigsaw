@@ -858,7 +858,7 @@
 
             if ((_retv = copy_init (
                  _jcfg, _jlog, 
-                 _mesh,*_mmsh)) != __no_error)
+                 _mesh,*_imsh)) != __no_error)
             {
                 return  _retv ;
             }
