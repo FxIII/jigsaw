@@ -37,13 +37,11 @@ The first step is to compile the code! The `JIGSAW` src can be found in <a href=
 
 `JIGSAW` has been successfully built using various versions of the `g++` and `llvm` compilers. Since the build process is a simple one-liner, there's no `make` script - instead:
 
-	g++ -std=c++11 -pedantic -Wall -s -O3 -flto -D NDEBUG -static-libstdc++ 
-	jigsaw.cpp -o jigsaw64r
+	g++ -std=c++11 -pedantic -Wall -s -O3 -flto -D NDEBUG -static-libstdc++ jigsaw.cpp -o jigsaw64r
 	
 can be used to build a `JIGSAW` executable, while:
 
-	g++ -std=c++11 -pedantic -Wall -O3 -flto -fPIC -D NDEBUG -static-libstdc++ 
-	jigsaw.cpp -shared -o libjigsaw64r.so
+	g++ -std=c++11 -pedantic -Wall -O3 -flto -fPIC -D NDEBUG -D __lib_jigsaw -static-libstdc++ jigsaw.cpp -shared -o libjigsaw64r.so
 
 can be used to build a `JIGSAW` shared library. See the headers in <a href="../master/inc/">`../jigsaw/inc/`</a> for details on the `API`. The `#define __lib_jigsaw` directive in `jigsaw.cpp` toggles the source between executable and shared-library modes.
 
