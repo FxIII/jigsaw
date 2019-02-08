@@ -199,7 +199,9 @@ class jigsaw_msh_t(DStruct):
         ljig.jigsaw_init_msh_t(byref(self))
 
 
-def makeMesh(jjig, geom, init=None):
+def makeMesh(jjig, geom, init=None,hfun=None):
     mesh = jigsaw_msh_t()
-    retv = ljig.jigsaw_make_mesh(byref(jjig), byref(geom), byref(init) if init is not None else 0, 0, byref(mesh))
+    init = byref(init) if init is not None else 0
+    hfun = byref(hfun) if hfun is not None else 0
+    retv = ljig.jigsaw_make_mesh(byref(jjig), byref(geom), init, hfun, byref(mesh))
     return retv, mesh
