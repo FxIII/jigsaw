@@ -1,1 +1,1 @@
-from _pygsaw import *
+from ._pygsaw import *

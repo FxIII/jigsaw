@@ -1,6 +1,7 @@
 from _pygsaw import *
 
-if __name__ == '__main__':
+
+def showcase():
     strip = np.array([[-80.47845458984375, 32.13664245605469], [-80.48204803466797, 32.12731170654297],
                       [-80.48564910888672, 32.11798095703125], [-80.49552917480469, 32.11642837524414],
                       [-80.4991226196289, 32.10709762573242], [-80.50271606445312, 32.0977668762207],
@@ -94,8 +95,11 @@ if __name__ == '__main__':
 
     make_mesh(jjig, geom, init, hfun, mesh)
 
-    # print mesh.trias["node"]
-    # print mesh.verts2D["pos"]
+    return strip, mesh.trias, mesh.edges, mesh.verts2D
+
+
+if __name__ == '__main__':
+    strip, trias, edges, verts = showcase()
 
     import matplotlib as mpl
 
@@ -104,14 +108,16 @@ if __name__ == '__main__':
     from matplotlib import pyplot as plt
     from matplotlib import collections as mc
 
-    points = mesh.verts2D["pos"]
-    tris = mesh.trias["node"]
-    # edges = mesh.edges["node"]
+    points = verts["pos"]
+    tris = trias["node"]
+    edges = edges["node"]
 
-    # lines = points[edges]
-    # lc = mc.LineCollection(lines, colors="k", linewidths=2)
+    lines = points[edges]
+    lc = mc.LineCollection(lines, colors="k", linewidths=2)
+    plt.gca().add_collection(lc)
     plt.triplot(points[:, 0], points[:, 1], tris)
     plt.scatter(strip[:-2, 0], strip[:-2, 1], c="k", marker="x")
     ring = np.tile(strip.T, 2).T
     plt.plot(ring[:, 0], ring[:, 1])
     plt.show()
+    #plt.savefig("output.pdf")

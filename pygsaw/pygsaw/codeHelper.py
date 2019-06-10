@@ -95,4 +95,4 @@ cdef class Mesh:
 
 
 if __name__ == '__main__':
-    print Mesh()
+    print (Mesh())

@@ -1,3 +1,4 @@
+__package__="pygsaw._pygsaw"
 cimport jigsaw as pygsaw
 
 import numpy as np

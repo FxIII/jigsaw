@@ -18,6 +18,7 @@ extensions = [
 
 setup(
     name="pygsaw",
+    version="0.1.0",
     packages=find_packages(),
     ext_modules=cythonize(extensions)
 )
